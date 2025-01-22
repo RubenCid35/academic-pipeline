@@ -1,0 +1,7 @@
+{
+    "dependencies": ["./pipeline"],
+    "graphs": {
+      "agent": "./pipeline/agent.py:graph"
+    },
+    "env": ".env"
+  }

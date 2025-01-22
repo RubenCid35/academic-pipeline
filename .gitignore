@@ -1,0 +1,6 @@
+# don't add api keys
+.env
+
+# data files and temporary processing should not be added
+data/
+
