@@ -11,5 +11,5 @@ def __get_llm() -> ChatOpenAI:
     Returns:
         ChatOpenAI: model instance
     """
-    model = ChatOpenAI(temperature=MODEL_TEMPERATURE, model_name = MODEL_VERSION)
+    model = ChatOpenAI(temperature=MODEL_TEMPERATURE)
     return model    

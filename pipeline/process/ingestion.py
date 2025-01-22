@@ -5,13 +5,10 @@ from typing import Any
 
 from langchain.schema import Document
 from langgraph.graph import MessagesState
-from langchain_core.messages import BaseMessage
-from langchain_core.runnables import RunnableConfig
 
 from langchain_core.document_loaders import Blob
 from langchain_community.document_loaders import PyMuPDFLoader
 from langchain_community.document_loaders.parsers.pdf import PyMuPDFParser
-
 
 # ---------------------------------------------
 # Custom PDF Loader 
@@ -53,9 +50,8 @@ class BytesIOPyMuPDFLoader(PyMuPDFLoader):
         return parser.parse(blob)
 
 # ---------------------------------------------
-# Input Format
+# PDF Ingestion Node
 # ---------------------------------------------
-
 def ingest_pdf(state: MessagesState) -> str:
     """Ingestion of PDF File. 
     
@@ -71,7 +67,7 @@ def ingest_pdf(state: MessagesState) -> str:
         str: file content as one text.
     """
     # get file input as bytes
-    pdf_stream  = BytesIO(state['input']['file'])
+    pdf_stream  = BytesIO(state['file'])
     
     # read pdf text content 
     pdf_reader  = BytesIOPyMuPDFLoader(pdf_stream, extract_images=False)

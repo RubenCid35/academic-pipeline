@@ -24,11 +24,7 @@ async def process(file: Annotated[bytes, File()]):
     Returns:
         dict[str, any]: JSON with some metadata
     """
-    input_data = {
-        'input': {
-            'file': file
-        }
-    }
+    input_data = { 'file': file }
     content = await graph.ainvoke(input_data)
     return content
 
