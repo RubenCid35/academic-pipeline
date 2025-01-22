@@ -55,5 +55,4 @@ def extract_research(state: dict[str, str]) -> dict[str, str]:
 
     # add previous findings
     research.update(state)
-    del research['content']
     return research
