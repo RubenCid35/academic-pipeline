@@ -8,7 +8,7 @@ import uvicorn
 from fastapi import FastAPI, File
 
 from pipeline.agent import graph
-from langchain_core.runnables import RunnableConfig
+from pipeline.logging import logger
 
 
 # Initialize the endpoints
@@ -25,9 +25,14 @@ async def process(file: Annotated[bytes, File()]):
         dict[str, any]: JSON with some metadata
     """
     input_data = { 'file': file }
-    content = await graph.ainvoke(input_data)
+    try:
+        content = await graph.ainvoke(input_data)
+    except ValueError:
+        logger.error("metadata / research validation steps failed.")
+        content = False
     return content
 
 
 if __name__ == '__main__':
-    uvicorn.run(".:app", host = "localhost", port = 4321, reload = False)
+    # deploy settings for google cloud run
+    uvicorn.run(app, host="0.0.0.0", port=80)

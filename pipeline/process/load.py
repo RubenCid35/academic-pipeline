@@ -6,13 +6,12 @@ from google.cloud import bigquery
 from google.oauth2.service_account import Credentials
 
 # determine the table where the data is going to be uploaded
-BIGQUERY_DATASET_ID: str = os.environ.get("BIQUERY_DATASET")
 BIGQUERY_TABLE: str = os.environ.get("BIQUERY_TABLE")
 
 # create connection to bigquery client
 credentials_file = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
 credentials = Credentials.from_service_account_file(credentials_file)
-client = bigquery.Client(BIGQUERY_DATASET_ID.split(".")[0], credentials)
+client = bigquery.Client(BIGQUERY_TABLE.split(".")[0], credentials)
 
 def load_results_bigquery(state: dict[str, str]):
     """

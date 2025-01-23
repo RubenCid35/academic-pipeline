@@ -31,3 +31,6 @@ should demonstrate your ability to:
 **Data Storage**:
 * Design a BigQuery schema to store the extracted information
 * Implement data loading to BigQuery
+
+
+# https://www.youtube.com/watch?v=NoJ7gjb8xw8
