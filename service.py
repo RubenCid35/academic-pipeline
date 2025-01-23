@@ -1,5 +1,8 @@
 from typing  import Annotated 
 
+
+from pipeline.logging import logger
+
 # load environment file
 import dotenv
 dotenv.load_dotenv()
@@ -8,7 +11,6 @@ import uvicorn
 from fastapi import FastAPI, File
 
 from pipeline.agent import graph
-from pipeline.logging import logger
 
 
 # Initialize the endpoints

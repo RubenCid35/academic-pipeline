@@ -28,7 +28,7 @@ pipeline_flow.add_node('metadata-validation', validate_metadata)
 # all steps are done sequentialy
 pipeline_flow.add_edge(START, 'ingestion')
 pipeline_flow.add_edge('ingestion', 'metadata-extraction')
-pipeline_flow.add_edge('metadata-extraction', 'research-validation')
+pipeline_flow.add_edge('metadata-extraction', 'metadata-validation')
 pipeline_flow.add_edge('metadata-validation', 'research-extraction')
 pipeline_flow.add_edge('research-extraction', 'summarization')
 pipeline_flow.add_edge('summarization', 'upload-results')
