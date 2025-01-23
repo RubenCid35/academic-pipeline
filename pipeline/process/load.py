@@ -9,9 +9,7 @@ from google.oauth2.service_account import Credentials
 BIGQUERY_TABLE: str = os.environ.get("BIQUERY_TABLE")
 
 # create connection to bigquery client
-credentials_file = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
-credentials = Credentials.from_service_account_file(credentials_file)
-client = bigquery.Client(BIGQUERY_TABLE.split(".")[0], credentials)
+client = bigquery.Client(BIGQUERY_TABLE.split(".")[0])
 
 def load_results_bigquery(state: dict[str, str]):
     """
