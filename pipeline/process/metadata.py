@@ -5,7 +5,7 @@ from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
 
 from pydantic import BaseModel, Field
-
+from datetime import datetime
 # ---------------------------------------------
 # Metadata Format
 # ---------------------------------------------
@@ -13,7 +13,7 @@ class Metadata(BaseModel):
     title: str = Field(description="title of the academic publication")
     authors: list[str] = Field(description="list of authors of the publication")
     abstract: str  = Field(description="abstract text of the academic publication")
-    publication_date: str = Field(description="publication date of the publication in iso format")
+    publication_date: datetime = Field(description="publication date of the publication to be parsed")
 
 parser = JsonOutputParser(pydantic_object=Metadata)
 # ---------------------------------------------
@@ -59,6 +59,12 @@ def extract_metadata(state: dict[str, str]) -> dict[str, str]:
     # extract the required metadata
     metadata = chain.invoke(state)
 
+    # extract date from datetime. The output is a datetime as string. 
+    metadata['publication_date'] = metadata['publication_date'].split("T", 2)[0]
+
+    # modify author
+    metadata['authors'] = [ {'name': name } for name in metadata['authors'] ]
+
     # persist the file content for future steps
-    metadata['content'] = state['content']
+    metadata.update(state)
     return metadata

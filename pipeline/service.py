@@ -26,7 +26,6 @@ async def process(file: Annotated[bytes, File()]):
     """
     input_data = { 'file': file }
     content = await graph.ainvoke(input_data)
-    del content['content']
     return content
 
 

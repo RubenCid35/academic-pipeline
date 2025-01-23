@@ -10,6 +10,9 @@ from langchain_core.document_loaders import Blob
 from langchain_community.document_loaders import PyMuPDFLoader
 from langchain_community.document_loaders.parsers.pdf import PyMuPDFParser
 
+from uuid import uuid4
+from pipeline.logging import logger
+
 # ---------------------------------------------
 # Custom PDF Loader 
 # ---------------------------------------------
@@ -75,5 +78,10 @@ def ingest_pdf(state: MessagesState) -> str:
     # parse and join all content
     pdf_content = pdf_reader.load()
     pdf_content = ''.join([page.page_content.replace('\t', ' ') for page in pdf_content])
-    return { 'content': pdf_content }
+    
+    # generate uuid
+    pdf_id = str(uuid4())
+    logger.info("parsing file: " + pdf_id)
+
+    return { 'id': pdf_id, 'content': pdf_content }
     
