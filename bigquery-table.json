@@ -1,0 +1,66 @@
+[
+    {
+      "name": "id",
+      "mode": "REQUIRED",
+      "type": "STRING",
+      "description": "",
+      "fields": []
+    },
+    {
+      "name": "title",
+      "mode": "NULLABLE",
+      "type": "STRING",
+      "description": "",
+      "fields": []
+    },
+    {
+      "name": "authors",
+      "mode": "REPEATED",
+      "type": "RECORD",
+      "description": "",
+      "fields": [
+        {
+          "name": "name",
+          "mode": "NULLABLE",
+          "type": "STRING",
+          "description": "",
+          "fields": []
+        }
+      ]
+    },
+    {
+      "name": "publication_date",
+      "mode": "NULLABLE",
+      "type": "DATE",
+      "description": "",
+      "fields": []
+    },
+    {
+      "name": "findings",
+      "mode": "NULLABLE",
+      "type": "STRING",
+      "description": "",
+      "fields": []
+    },
+    {
+      "name": "methodology",
+      "mode": "NULLABLE",
+      "type": "STRING",
+      "description": "",
+      "fields": []
+    },
+    {
+      "name": "summary",
+      "mode": "NULLABLE",
+      "type": "STRING",
+      "description": "",
+      "fields": []
+    },
+    {
+      "name": "abstract",
+      "mode": "NULLABLE",
+      "type": "STRING",
+      "description": "",
+      "fields": []
+    }
+  ]

@@ -1,10 +1,11 @@
 import streamlit as st
 import requests
 
-PIPELINE_URL: str = "https://data-pipeline-667112100276.europe-west9.run.app"
-
 # Streamlit app title
 st.title("Academic PDF File Upload")
+
+# pipeline location input
+pipeline_url = st.text_input("Pipeline Location URL", value="localhost:8080")
 
 # File uploader component to allow users to upload a file
 uploaded_file = st.file_uploader("Drop your PDF file here (Academic Publication Only)", type=["pdf"])
@@ -20,7 +21,7 @@ if st.button("Send File"):
         try:
             with st.spinner("Uploading and processing your file... Please wait."):
                 data = { 'file': uploaded_file }
-                response = requests.post(PIPELINE_URL + "/process", files = data)
+                response = requests.post(pipeline_url + "/process", files = data)
                 print(f"response: {response.status_code} - content: {response.text}")
                 # Display the response status and content
                 if response.status_code == 200 and response.text.strip().lower() == "true":
