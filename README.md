@@ -142,3 +142,14 @@ pip install -r requirements-interface.txt
 streamlit run interface.py
 ```
 You will be required to add the pipeline url at the start of the interface.
+
+
+## Limitations
+
+While the pipeline effectively processes academic publications, there are a few limitations to keep in mind:
+
+* **Duplicate Results**
+    The pipeline does not check for uniqueness in the processed results. If the same file is uploaded multiple times, duplicate entries may be created in the BigQuery table. The individual ids will be different.
+
+* **Performance**
+    The pipeline requires an average of 10 seconds to extract and parse all information from a single file.
