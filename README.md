@@ -89,7 +89,7 @@ docker build -t astrafy-pipeline .
 3. Build the Docker Image:
     Run the Docker container while mapping the appropriate port:
 ```bash
-docker build -t astrafy-pipeline . 
+docker run -p 8080:8080 -d astrafy-pipeline 
 ```
 
 ### Pipeline: Google Cloud Deployment
@@ -106,8 +106,6 @@ cd academic-pipeline
 ```bash
 gcloud iam service-accounts create bigquery-pipe-sa --display-name "Bigquery Academic Librarian"
 gcloud iam service-accounts keys create ~/key.json --iam-account bigquery-pipe-sa@${PROJECT_ID}.iam.gserviceaccount.com
-gcloud projects add-iam-policy-binding ${PROJECT_ID} --member "serviceAccount:bigquery-pipe-sa@${PROJECT_ID}.iam.gserviceaccount.com"
-gcloud projects add-iam-policy-binding ${PROJECT_ID} --member "serviceAccount:bigquery-pipe-sa@${PROJECT_ID}.iam.gserviceaccount.com" 
 gcloud projects add-iam-policy-binding ${PROJECT_ID} --member "serviceAccount:bigquery-pipe-sa@${PROJECT_ID}.iam.gserviceaccount.com" --role "roles/bigquery.user"
 gcloud projects add-iam-policy-binding ${PROJECT_ID} --member "serviceAccount:bigquery-pipe-sa@${PROJECT_ID}.iam.gserviceaccount.com" --role "roles/bigquery.editor"
 gcloud projects add-iam-policy-binding ${PROJECT_ID} --member "serviceAccount:bigquery-pipe-sa@${PROJECT_ID}.iam.gserviceaccount.com" --role "roles/bigquery.dataEditor"
